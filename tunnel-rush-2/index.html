@@ -1,103 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-Y71QM9DR66"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-Y71QM9DR66");
-    </script>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title class="cloak">Tunnel Rush 2 | MacVG</title>
-    <span id="macvgmacvg" name="game437"></span>
-    <link
-      rel="shortcut icon"
-      href="/logo.png"
-      type="image/x-icon"
-      class="favicon"
-    />
-    <link rel="stylesheet" href="/macvg/projects/style.css" />
-    <script src="/macvg/projects/app.js"></script>
-  </head>
-  <body>
-    <div class="game-container">
-      <div class="game-related">
-        <div class="actual" id="gameframe">
-          <iframe src="game.html" frameborder="0" id="iframe"> </iframe>
-          <div class="tool-bar">
-            <div class="more-left">
-              <img src="logo.jpg" alt="" />
-            </div>
-            <div class="leftest">
-              <h5 class="title">Tunnel Rush 2</h5>
-              <a href="">Deer Cat Games</a>
-            </div>
-            <img src="/macvg/back.svg" id="back" style="width: 20pxoo" />
-            <img src="/macvg/star-regular.svg" style="width: 20px" id="star" />
-            <img src="/macvg/share-solid.svg" style="width: 20px" id="share" />
-            <img src="/macvg/download.svg" id="download" />
-            <img src="/macvg/expand.svg" id="fullscreen" />
-          </div>
-        </div>
-        <div class="more-info">
-          <div class="info">
-            <h3>About</h3>
-            Oops, you caught us, we're still working hard to provide game
-            description on this game! In the upcoming updates, more and more
-            games will have their descriptions and instructions to help you beat
-            it, so stay tuned for more updates!<br /><br /><br /><br /><br /><br /><br />
-          </div>
-          <div class="info">
-            <h3>Controls</h3>
-            <ul>
-              <li>Arrow / WASD Keys: Move Left / Right</li>
-              <li>P: Pause</li>
-            </ul>
-          </div>
-          <div class="info">
-            <h3>Game Information</h3>
-            <ul>
-              <li>Release Date: April 2018</li>
-              <li>Developer: Deer Cat Games</li>
-              <li>Players: 10M+</li>
-              <li>
-                Catagory:
-                <a href="/macvg/action-adventure.html" style="color: white"
-                  >Action and Adventrue</a
-                >
-              </li>
-              <li>Genre: Reaction Games</li>
-              <li>Build: Unity WebGL</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="right">
-        <div class="nav">
-          <a href="/macvg/" class="logo">
-            <img src="/macvg/macvg-logo.png" alt="" />
-          </a>
-          <div class="links">
-            <a href="/macvg/new.html" class="nav-link">New</a>
-            <a href="/macvg/trending.html" class="nav-link">Trending</a>
-            <a href="/macvg/groups.html" class="nav-link">Groups</a>
-            <a href="/macvg/bot.html" class="nav-link">Chat</a>
-            <a href="/macvg/projects/macboard/" class="nav-link">MacBoard</a>
-            <a href="/macvg/settings.html" class="nav-link">Settings</a>
-          </div>
+    <title>Tunnel Rush 2 | MacVG</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <style type="text/css">
+      body {
+        margin: 0;
+        background-color: black;
+      }
+      .game {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        margin: 0px;
+        border: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: block;
+      }
+      #display728x90 {
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        margin-left: auto;
+        margin-right: auto;
+        top: 20px;
 
-          <div class="copyright">© 2023 MacWeb</div>
-        </div>
-      </div>
-    </div>
+        width: 728px;
+        height: 90px;
+        display: none;
+        /*	background: #505050; */
+      }
+
+      #display320x50 {
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        margin-left: auto;
+        margin-right: auto;
+        top: 10px;
+
+        width: 320px;
+        height: 50px;
+        display: none;
+        /*	background: #505050; */
+      }
+    </style>
+  </head>
+
+  <body style="background: black">
+    <canvas
+      class="game"
+      id="canvas"
+      oncontextmenu="event.preventDefault()"
+    ></canvas>
+    <div id="display728x90"></div>
+    <div id="display320x50"></div>
+
+    <script type="text/javascript">
+      var Module = {
+        preRun: [],
+        postRun: [],
+        print: (function () {
+          return function (text) {
+            text = Array.prototype.slice.call(arguments).join(" ");
+            console.log(text);
+          };
+        })(),
+        printErr: function (text) {
+          text = Array.prototype.slice.call(arguments).join(" ");
+          console.error(text);
+        },
+        canvas: (function () {
+          var canvas = document.getElementById("canvas");
+          canvas.addEventListener(
+            "webglcontextlost",
+            function (e) {
+              alert("FIXME: WebGL context lost, please reload the page");
+              e.preventDefault();
+            },
+            false
+          );
+          return canvas;
+        })(),
+        setStatus: function (text) {},
+        monitorRunDependencies: function (left) {},
+      };
+      window.onerror = function (event) {
+        console.log("onerror: " + event.message);
+      };
+      /*    window.addEventListener('keydown', ev => {
+			if (['ArrowDown', 'ArrowUp', ' '].includes(ev.key)) {
+				ev.preventDefault();
+			}
+		});
+	window.addEventListener('wheel', ev => ev.preventDefault(), { passive: false }); */
+    </script>
+    <!--<script type="text/javascript" src="main.js"></script>-->
+    <script src="patch/js/poki-sdk.js"></script>
+    <script async="false" type="text/javascript" src="moonbird.js"></script>
   </body>
 </html>
